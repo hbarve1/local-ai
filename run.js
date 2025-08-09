@@ -1,4 +1,4 @@
-import OllamaClient from './index.js';
+import OllamaClient from './index.mjs';
 
 const ollama = new OllamaClient();
 
