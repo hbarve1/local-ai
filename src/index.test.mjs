@@ -1,5 +1,5 @@
 
-import OllamaClient from './index.mjs';
+import OllamaClient from './ollamaClient.mjs';
 
 
 describe('OllamaClient API', () => {

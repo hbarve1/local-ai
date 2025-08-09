@@ -1,4 +1,4 @@
-import OllamaClient from './index.js';
+import OllamaClient from './ollamaClient.mjs';
 
 // Create an instance of the Ollama client
 const ollama = new OllamaClient();
@@ -84,14 +84,14 @@ async function runExamples() {
         console.log('\n');
 
         // Example 8: Error handling demonstration
-        console.log('⚠️  Example 8: Error handling');
-        console.log('=============================');
-        try {
-            await ollama.generate('non-existent-model', 'This should fail');
-        } catch (error) {
-            console.log('Caught error:', error.message);
-        }
-        console.log('\n');
+        // console.log('⚠️  Example 8: Error handling');
+        // console.log('=============================');
+        // try {
+        //     await ollama.generate('non-existent-model', 'This should fail');
+        // } catch (error) {
+        //     console.log('Caught error:', error.message);
+        // }
+        // console.log('\n');
 
         console.log('✅ All examples completed successfully!');
 
