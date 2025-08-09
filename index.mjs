@@ -64,26 +64,37 @@ class OllamaClient {
      * @param {string} model - The model name to pull
      * @returns {Promise<Object>} - Pull status
      */
-    async pullModel(model) {
-        try {
-            const response = await fetch(`${this.baseUrl}/api/pull`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name: model })
-            });
+async pullModel(model) {
+    try {
+        const response = await fetch(`${this.baseUrl}/api/pull`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name: model })
+        });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            return await response.json();
-        } catch (error) {
-            console.error('Error pulling model:', error);
-            throw error;
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const text = await response.text();
+        // Split by newlines, filter out empty lines, and parse each as JSON
+        const lines = text.split('\n').filter(Boolean).map(line => {
+            try {
+                return JSON.parse(line);
+            } catch (e) {
+                return { error: 'Invalid JSON', line };
+            }
+        });
+
+        // Return the last status (usually {"status":"success"})
+        return lines[lines.length - 1];
+    } catch (error) {
+        console.error('Error pulling model:', error);
+        throw error;
     }
+}
 
     /**
      * Get information about a specific model
