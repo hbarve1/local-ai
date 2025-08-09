@@ -1,13 +1,17 @@
 {
   "name": "ollama-local",
   "version": "1.0.0",
-  "description": "",
+  "description": "JavaScript client for local Ollama setup",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["ollama", "ai", "local", "llm"],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }
